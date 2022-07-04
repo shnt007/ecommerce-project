@@ -1,4 +1,6 @@
 {% extends 'base/base.html' %}
+{% block title %}Login {% endblock %}
+
 {% block content %}
 
 <div class="breadcrumb-section breadcrumb-bg-color--golden">
@@ -44,11 +46,11 @@
                                 <span>Remember me</span>
                             </label>
                             <a href="#">Lost your password?</a>
-                            <p class="text-left mt-4">Don't have account?<a href="#">Register Here!</a></p>
-
-
                         </div>
+
                     </form>
+                    <p class="text-center mt-4">Don't have account?<a href="{% url 'register' %}"> Register Here!</a>
+                    </p>
                 </div>
             </div>
         </div>

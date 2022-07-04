@@ -1,16 +1,18 @@
 {% extends 'base/base.html' %}
+{% block title %} Register {% endblock %}
+
 {% block content %}
 
 <div class="breadcrumb-section breadcrumb-bg-color--golden">
     <div class="breadcrumb-wrapper">
         <div class="container">
-            <div class="row">
+            <div class="col-12">
                 <div class="col-12">
                     <h3 class="breadcrumb-title">Register</h3>
                     <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
                         <nav aria-label="breadcrumb">
                             <ul>
-                                <li><a href="index.html">Home</a></li>
+                                <li><a href="{% url 'index' %}">Home</a></li>
                                 <li class="active" aria-current="page">Register</li>
                             </ul>
                         </nav>
@@ -53,7 +55,7 @@
                     </form>
                 </div>
             </div>
-            <p class="text-center mt-4">Already have account?<a href="#">Sign in</a></p>
+            <p class="text-center mt-4">Already have account?<a href="{% url 'login' %}">Sign in</a></p>
             <!--register area end-->
         </div>
     </div>

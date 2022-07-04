@@ -10,3 +10,7 @@ def index(request):
 
 def contact(request):
     return render(request, 'base/contact.html')
+
+
+def about(request):
+    return render(request, 'base/about.html')
