@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="breadcrumb-section breadcrumb-bg-color--golden">
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="breadcrumb-title">Login</h3>
+                    <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                        <nav aria-label="breadcrumb">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active" aria-current="page">Login</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="customer-login">
+    <div class="container">
+        <div class="row">
+            <!--login area start-->
+            <div class="center">
+                <div class="account_form" data-aos="fade-up" data-aos-delay="0">
+                    <h3>login</h3>
+                    <form action="#" method="POST">
+
+                        <div class="default-form-box">
+                            <label>Username or email <span>*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Passwords <span>*</span></label>
+                            <input type="password">
+                        </div>
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover mb-4" type="submit">login</button>
+                            <label class="checkbox-default mb-4" for="offer">
+                                <input type="checkbox" id="offer">
+                                <span>Remember me</span>
+                            </label>
+                            <a href="#">Lost your password?</a>
+                            <p class="text-left mt-4">Don't have account?<a href="#">Register Here!</a></p>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="breadcrumb-section breadcrumb-bg-color--golden">
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="breadcrumb-title">Register</h3>
+                    <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                        <nav aria-label="breadcrumb">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li class="active" aria-current="page">Register</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- ...:::: End Breadcrumb Section:::... -->
+
+<!-- ...:::: Start Customer Login Section :::... -->
+<div class="customer-login">
+    <div class="container">
+        <div class="row">
+
+            <!--register area start-->
+            <div class="center">
+                <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Register</h3>
+                    <form action="#">
+                        <div class="default-form-box">
+                            <label>First Name <span>*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Last Name<span>*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Email address <span>*</span></label>
+                            <input type="text">
+                        </div>
+                        <div class="default-form-box">
+                            <label>Passwords <span>*</span></label>
+                            <input type="password">
+                        </div>
+                        <div class="login_submit">
+                            <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class="text-center mt-4">Already have account?<a href="#">Sign in</a></p>
+            <!--register area end-->
+        </div>
+    </div>
+</div>
+
+{% endblock %}
