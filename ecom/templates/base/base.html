@@ -58,10 +58,17 @@
                         <div class="header-top-right">
                             <div
                                 class="header-top-user-link header-top-user-link-color--white header-top-user-link-hover-color--green">
-                                <a href="{% url 'login' %}">Account</a>
-                                <a href="wishlist.html">Wishlist</a>
-                                <a href="cart.html">Cart</a>
-                                <a href="checkout.html">Checkout</a>
+
+                                {% if request.user.is_authenticated %}
+                                <a href="# ">Profile</a>
+                                <a href="/">Add Items</a>
+                                <a href="/">Wishlist</a>
+                                <a href="/">Cart</a>
+                                <a href="{% url 'logout' %}">Logout</a>
+                                {% else %}
+                                <a href="{% url 'login' %}">Login</a>
+                                <a href="{% url 'register' %}">Register</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -76,8 +83,7 @@
                             <!-- Start Header Logo -->
                             <div class="header-logo">
                                 <div class="logo">
-                                    <a href="{% url 'index' %}"><img src="/static/images/logo/logo_black.png"
-                                            alt=""></a>
+                                    <a href="{% url 'index' %}"><img src="/static/images/logo/1.png" alt=""></a>
                                 </div>
                             </div>
                             <!-- End Header Logo -->
@@ -97,30 +103,37 @@
                                                 <ul class="mega-menu-inner">
                                                     <!-- Mega Menu Sub Link -->
                                                     <li class="mega-menu-item">
-                                                        <a href="#" class="mega-menu-item-title">Shop Layouts</a>
+                                                        <a href="#" class="mega-menu-item-title">Shop
+                                                            Layouts</a>
                                                         <ul class="mega-menu-sub">
-                                                            <li><a href="shop-grid-sidebar-left.html">Grid Left
+                                                            <li><a href="shop-grid-sidebar-left.html">Grid
+                                                                    Left
                                                                     Sidebar</a></li>
-                                                            <li><a href="shop-grid-sidebar-right.html">Grid Right
+                                                            <li><a href="shop-grid-sidebar-right.html">Grid
+                                                                    Right
                                                                     Sidebar</a></li>
-                                                            <li><a href="shop-full-width.html">Full Width</a></li>
-                                                            <li><a href="shop-list-sidebar-left.html">List Left
+                                                            <li><a href="shop-full-width.html">Full
+                                                                    Width</a></li>
+                                                            <li><a href="shop-list-sidebar-left.html">List
+                                                                    Left
                                                                     Sidebar</a></li>
-                                                            <li><a href="shop-list-sidebar-right.html">List Right
+                                                            <li><a href="shop-list-sidebar-right.html">List
+                                                                    Right
                                                                     Sidebar</a></li>
                                                         </ul>
                                                     </li>
                                                     <!-- Mega Menu Sub Link -->
                                                     <li class="mega-menu-item">
-                                                        <a href="#" class="mega-menu-item-title">Product Types</a>
+                                                        <a href="#" class="mega-menu-item-title">Product
+                                                            Types</a>
                                                         <ul class="mega-menu-sub">
-                                                            <li><a href="product-details-default.html">Product
-                                                                    Default</a></li>
+                                                            <li><a href="/">Product</a></li>
                                                             <li><a href="product-details-variable.html">Product
                                                                     Variable</a></li>
                                                             <li><a href="product-details-affiliate.html">Product
                                                                     Referral</a></li>
-                                                            <li><a href="product-details-group.html">Product Group</a>
+                                                            <li><a href="product-details-group.html">Product
+                                                                    Group</a>
                                                             </li>
                                                             <li><a href="product-details-single-slide.html">Product
                                                                     Slider</a></li>
@@ -128,11 +141,14 @@
                                                     </li>
                                                     <!-- Mega Menu Sub Link -->
                                                     <li class="mega-menu-item">
-                                                        <a href="#" class="mega-menu-item-title">Product Types</a>
+                                                        <a href="#" class="mega-menu-item-title">Product
+                                                            Types</a>
                                                         <ul class="mega-menu-sub">
-                                                            <li><a href="product-details-tab-left.html">Product Tab
+                                                            <li><a href="product-details-tab-left.html">Product
+                                                                    Tab
                                                                     Left</a></li>
-                                                            <li><a href="product-details-tab-right.html">Product Tab
+                                                            <li><a href="product-details-tab-right.html">Product
+                                                                    Tab
                                                                     Right</a></li>
                                                             <li><a href="product-details-gallery-left.html">Product
                                                                     Gallery Left</a></li>
@@ -159,7 +175,8 @@
                                             <!-- Sub Menu -->
                                             <ul class="sub-menu">
                                                 <li><a href="{% url 'login' %}">Login</a></li>
-                                                <li><a href="my-account.html">My Account</a></li>
+                                                <li><a href="{% url 'profile' %}">My Account</a>
+                                                </li>
                                                 <li><a href="{% url 'register' %}">Register</a></li>
                                                 <li><a href="cart.html">Cart</a></li>
                                                 <li><a href="empty-cart.html">Cart</a></li>
@@ -173,7 +190,8 @@
                                             <!-- Sub Menu -->
                                             <ul class="sub-menu">
                                                 <li><a href="faq.html">Frequently Questions</a></li>
-                                                <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                                <li><a href="privacy-policy.html">Privacy Policy</a>
+                                                </li>
                                                 <li><a href="404.html">404 Page</a></li>
                                             </ul>
                                         </li>
@@ -274,6 +292,7 @@
     {% block content %}
 
     {% endblock %}
+    {% include 'base/footer.html' %}
 
     <!-- ::::::::::::::All JS Files here :::::::::::::: -->
     <!-- Global Vendor, plugins JS -->

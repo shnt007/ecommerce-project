@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apps.base',
     'apps.core',
     'apps.accounts',
+    'apps.products',
 ]
 
 MIDDLEWARE = [
@@ -128,7 +129,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'public/static'
 ]
 
-MEDIA_ROOT = BASE_DIR / 'public/static/'
+MEDIA_ROOT = BASE_DIR / 'public/media/'
 MEDIA_URL = '/media/'
 
 
