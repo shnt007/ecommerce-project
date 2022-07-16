@@ -5,13 +5,33 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Profile
-
-from apps.accounts.models import Profile
+from .form import ProfileForm
 
 # Create your views here.
 
 
-def login_page(request):
+# def profile(request):
+#     user = User.objects.get(email)
+#     return render(request, 'accounts/profile.html', {'context': user})
+
+
+def user_profile(request):
+    if request.method == "POST":
+        email = request.object.get['email']
+        user_obj = User.objects.get(username=email)
+        form = ProfileForm
+        formSave = ProfileForm(request.POST, request.FILES)
+        if formSave.is_valid():
+            formSave.save()
+            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
+        else:
+            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
+    else:
+        user_obj = User
+        return render(request, 'accounts/login.html', {'form': user_obj})
+
+
+def user_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -28,14 +48,14 @@ def login_page(request):
         user_obj = authenticate(username=email, password=password)
         if user_obj:
             login(request, user_obj)
-            return redirect('/')
+            return render(request, 'accounts/profile.html')
 
         messages.success(request, 'Invalid credentials')
         return HttpResponseRedirect(request.path_info)
     return render(request, 'accounts/account.html')
 
 
-def register(request):
+def user_register(request):
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -56,6 +76,11 @@ def register(request):
         return HttpResponseRedirect(request.path_info)
 
     return render(request, 'accounts/account.html')
+
+
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 
 def activate_email(request, email_token):

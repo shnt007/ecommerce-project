@@ -1,5 +1,5 @@
 {% extends 'base/base.html' %}
-{% block title %} Register Page {% endblock %}
+{% block title %} Account Page {% endblock %}
 
 {% block content %}
 
@@ -25,13 +25,17 @@
 <div class="container text-center">
     {% include "base/alert.html" %}
 </div>
+
 <div class="customer-login">
     <div class="container">
         <div class="row">
             <!--login area start-->
             <div class="col-lg-6 col-md-6">
                 <div class="account_form" data-aos="fade-up" data-aos-delay="0">
-                    <h3>Login</h3>
+                    <a href="{% url 'login' %}">
+                        <h3>Login</h3>
+                    </a>
+
                     <form method="POST">
                         {% csrf_token %}
                         <div class="default-form-box">
@@ -59,7 +63,9 @@
             <!--register area start-->
             <div class="col-lg-6 col-md-6">
                 <div class="account_form register" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Register</h3>
+                    <a href="{% url 'register' %}">
+                        <h3>Register</h3>
+                    </a>
                     <form method="POST">
                         {% csrf_token %}
                         <div class="default-form-box">
