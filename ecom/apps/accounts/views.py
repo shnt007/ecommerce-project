@@ -1,26 +1,29 @@
 import email
+from multiprocessing import context
+from re import template
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Profile
-from .form import ProfileForm
-
+from django.urls import reverse
 # Create your views here.
 
 
 # def profile(request):
-#     user = User.objects.get(email)
-#     return render(request, 'accounts/profile.html', {'context': user})
+#     template = 'accounts/profile.html'
+#     context = {
+#         'user': User.objects.get(email)
+#     }
+#     return render(request, template, context)
 
 
-def user_profile(request):
+def user_profile(request, id):
     if request.method == "POST":
-        email = request.object.get['email']
-        user_obj = User.objects.get(username=email)
-        form = ProfileForm
-        formSave = ProfileForm(request.POST, request.FILES)
+        user_obj = User.objects.get(id=id)
+        form = Profile
+        formSave = Profile(request.POST, request.FILES)
         if formSave.is_valid():
             formSave.save()
             return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
@@ -28,7 +31,7 @@ def user_profile(request):
             return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
     else:
         user_obj = User
-        return render(request, 'accounts/login.html', {'form': user_obj})
+        return render(request, 'accounts/profile.html', {'form': user_obj})
 
 
 def user_login(request):
@@ -48,6 +51,7 @@ def user_login(request):
         user_obj = authenticate(username=email, password=password)
         if user_obj:
             login(request, user_obj)
+            # return reverse('accounts/profile.html', kwargs={'id': email})
             return render(request, 'accounts/profile.html')
 
         messages.success(request, 'Invalid credentials')
@@ -76,6 +80,31 @@ def user_register(request):
         return HttpResponseRedirect(request.path_info)
 
     return render(request, 'accounts/account.html')
+
+
+# def user_profile(request, username):
+#     db_data = Profile.objects.get(id=username)
+#     context = {
+#         "db_data": db_data
+#     }
+#     return render(request, 'accounts/profile.html', context)
+
+
+def user_edit(request, username):
+    db_data = Profile.object.get(id=username)
+    context = {
+        "db_data": db_data
+    }
+    if request.method == 'POST':
+        db_data.first_name = request.POST.get('first_name')
+        db_data.Last_name = request.POST.get('last_name')
+        db_data.contact = request.POST.get("contact")
+        db_data.email = request.POST.get("email")
+        db_data.password = request.POST.get("password")
+        db_data.save()
+        return render(request, 'accounts/profile.html', context)
+    else:
+        return render(request, 'accounts/edit.html', context)
 
 
 def user_logout(request):

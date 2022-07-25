@@ -60,7 +60,7 @@
                                 class="header-top-user-link header-top-user-link-color--white header-top-user-link-hover-color--green">
 
                                 {% if request.user.is_authenticated %}
-                                <a href="# ">Profile</a>
+                                <a href="{% url 'profile' user.id %} ">Profile</a>
                                 <a href="/">Add Items</a>
                                 <a href="/">Wishlist</a>
                                 <a href="/">Cart</a>
@@ -174,15 +174,17 @@
                                                     class="fa fa-angle-down"></i></a>
                                             <!-- Sub Menu -->
                                             <ul class="sub-menu">
-                                                <li><a href="{% url 'login' %}">Login</a></li>
-                                                <li><a href="{% url 'profile' %}">My Account</a>
-                                                </li>
-                                                <li><a href="{% url 'register' %}">Register</a></li>
+                                                {% if request.user.is_authenticated %}
+                                                <li><a href="{% url 'profile' user.id %}">My Account</a></li>
                                                 <li><a href="cart.html">Cart</a></li>
                                                 <li><a href="empty-cart.html">Cart</a></li>
                                                 <li><a href="wishlist.html">Wishlist</a></li>
                                                 <li><a href="compare.html">Compare</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
+                                                {% else %}
+                                                <li><a href="{% url 'login' %}">Login</a></li>
+                                                <li><a href="{% url 'register' %}">Register</a></li>
+                                                {% endif %}
                                             </ul>
                                         </li>
                                         <li class="has-dropdown">
