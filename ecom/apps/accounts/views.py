@@ -11,29 +11,6 @@ from django.urls import reverse
 # Create your views here.
 
 
-# def profile(request):
-#     template = 'accounts/profile.html'
-#     context = {
-#         'user': User.objects.get(email)
-#     }
-#     return render(request, template, context)
-
-
-def user_profile(request, id):
-    if request.method == "POST":
-        user_obj = User.objects.get(id=id)
-        form = Profile
-        formSave = Profile(request.POST, request.FILES)
-        if formSave.is_valid():
-            formSave.save()
-            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
-        else:
-            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
-    else:
-        user_obj = User
-        return render(request, 'accounts/profile.html', {'form': user_obj})
-
-
 def user_login(request):
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -82,25 +59,31 @@ def user_register(request):
     return render(request, 'accounts/account.html')
 
 
-# def user_profile(request, username):
-#     db_data = Profile.objects.get(id=username)
-#     context = {
-#         "db_data": db_data
-#     }
-#     return render(request, 'accounts/profile.html', context)
+def user_profile(request, id):
+    if request.method == "POST":
+        user_obj = User.objects.get(id=id)
+        form = Profile
+        formSave = Profile(request.POST, request.FILES)
+        if formSave.is_valid():
+            formSave.save()
+            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
+        else:
+            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
+    else:
+        user_obj = User
+        return render(request, 'accounts/profile.html', {'form': user_obj})
 
 
-def user_edit(request, username):
-    db_data = Profile.object.get(id=username)
+def user_edit(request, id):
+    db_data = Profile.object.get(id=id)
     context = {
         "db_data": db_data
     }
     if request.method == 'POST':
         db_data.first_name = request.POST.get('first_name')
         db_data.Last_name = request.POST.get('last_name')
-        db_data.contact = request.POST.get("contact")
-        db_data.email = request.POST.get("email")
-        db_data.password = request.POST.get("password")
+        db_data.contact = request.POST.get('contact')
+        db_data.email = request.POST.get('email')
         db_data.save()
         return render(request, 'accounts/profile.html', context)
     else:
