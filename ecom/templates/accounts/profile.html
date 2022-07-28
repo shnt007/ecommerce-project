@@ -149,12 +149,8 @@
                                                     Email : {{ user.email }}
                                                 </label>
                                             </div>
-                                            <div class="default-form-box mb-20">
-                                                <label>
-                                                    Contact : {{ user.contact }}
-                                                </label>
-                                            </div>
-                                            <a href="#" class="view">Edit</a>
+
+                                            <a href="{% url 'edit' user.id %}" class="view">Edit</a>
                                         </form>
                                     </div>
                                 </div>

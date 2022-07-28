@@ -1,36 +1,77 @@
 {% extends 'base/base.html' %}
 {% block content %}
 
-<div class="tab-pane fade" id="account-details">
-    <h3>Account details </h3>
-    <div class="login">
-        <form method="POST">
-            {% csrf_token %}
-            <div class="login_form_container">
-                <div class="account_login_form">
-                    <form action="#">
-                        <div class="default-form-box mb-20">
-                            <label>First Name</label>
-                            <input type="text" name="first-name">
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label>Last Name</label>
-                            <input type="text" name="last-name">
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label>Email</label>
-                            <input type="text" name="email-name">
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label>Password</label>
-                            <input type="password" name="user-password">
-                        </div>
-                        <div class="save_button mt-3">
-                            <button class="btn btn-md btn-black-default-hover" type="submit">Save</button>
-                        </div>
-                    </form>
+<div class="breadcrumb-section breadcrumb-bg-color--golden">
+    <div class="breadcrumb-wrapper">
+        <div class="container">
+            <div class="col-12">
+                <div class="col-12">
+                    <h3 class="breadcrumb-title">Account</h3>
+                    <div class="breadcrumb-nav breadcrumb-nav-color--black breadcrumb-nav-hover-color--golden">
+                        <nav aria-label="breadcrumb">
+                            <ul>
+                                <li><a href="{% url 'index' %}">Home</a></li>
+                                <li class="active" aria-current="page">Edit Profile</li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div> <!-- ...:::: End Breadcrumb Section:::... -->
+<!-- 
+<div class="container">
+    <div class="tab-pane fade" id="account-details">
+        <h3>Edit Account details </h3>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="default-form-box">
+                <label>First Name <span>*</span></label>
+                <input name="first_name" type="text">
+            </div>
+            <div class="default-form-box">
+                <label>Last Name <span>*</span></label>
+                <input name="last_name" type="text">
+            </div>
+            <div class="default-form-box">
+                <label>Email address <span>*</span></label>
+                <input name="email" type="text">
+            </div>
+            <div class="default-form-box">
+                <label>Passwords <span>*</span></label>
+                <input name="password" type="password">
+            </div>
+            <div class="login_submit">
+                <button class="btn btn-md btn-black-default-hover" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+<div class="row pt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>User Update</h3>
+        </div>
+        <div class="card-body">
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <div class="form-group mb-2">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" class="form-control mt-2" value="{{ user.first_name }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" class="form-control mt-2" value="{{ user.last_name }}">
+                </div>
+                <div class="form-group mb-2">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" class="form-control mt-2" value="{{ user.email }}">
+                </div>
+                <button class="btn btn-primary text-uppercase btn-block" type="submit">Update</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

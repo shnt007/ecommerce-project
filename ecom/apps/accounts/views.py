@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
+from traitlets import Instance
 from .models import Profile
 from django.urls import reverse
 # Create your views here.
@@ -60,31 +61,22 @@ def user_register(request):
 
 
 def user_profile(request, id):
-    if request.method == "POST":
-        user_obj = User.objects.get(id=id)
-        form = Profile
-        formSave = Profile(request.POST, request.FILES)
-        if formSave.is_valid():
-            formSave.save()
-            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
-        else:
-            return render(request, 'accounts/profile.html', {'form': form, 'data': user_obj})
-    else:
-        user_obj = User
-        return render(request, 'accounts/profile.html', {'form': user_obj})
+    user_obj = User.objects.get(id=id)
+    context = {
+        'user_obj': user_obj
+    }
+
+    return render(request, 'accounts/profile.html', context)
 
 
 def user_edit(request, id):
-    db_data = Profile.object.get(id=id)
-    context = {
-        "db_data": db_data
-    }
+    user_obj = User.objects.get(id=id)
+    context = {"db_data": user_obj}
     if request.method == 'POST':
-        db_data.first_name = request.POST.get('first_name')
-        db_data.Last_name = request.POST.get('last_name')
-        db_data.contact = request.POST.get('contact')
-        db_data.email = request.POST.get('email')
-        db_data.save()
+        user_obj.first_name = request.POST.get('first_name')
+        user_obj.last_name = request.POST.get('last_name')
+        user_obj.email = request.POST.get('email')
+        user_obj.save()
         return render(request, 'accounts/profile.html', context)
     else:
         return render(request, 'accounts/edit.html', context)
